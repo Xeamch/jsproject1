@@ -1,5 +1,29 @@
 'use strict';
 
+
+let startBtn = document.getElementById("start"),
+	budgetValue = document.getElementsByClassName('budget-value')[0],
+	dayBudgetValue = document.getElementsByClassName('daybudget-value')[0],
+	levelValue = document.getElementsByClassName('level-value')[0],
+	expensesValue = document.getElementsByClassName('expenses-value')[0],
+	optionalExpensesValue = document.getElementsByClassName('optionalexpenses-value')[0],
+	incomeValue = document.getElementsByClassName('income-value')[0],
+    monthSavingsValue = document.getElementsByClassName('monthsavings-value')[0],
+    yearSavingsValue = document.getElementsByClassName('yearsavings-value')[0],
+
+
+	expensesItem = document.getElementsByClassName('expenses-item'),
+	expensesBtn = document.getElementsByTagName('button')[0],
+	optionalExpensesBtn = document.getElementsByTagName('button')[1],
+    countBtn = document.getElementsByTagName('button')[2],
+    optionalExpensesItem = document.querySelectorAll('.optionalexpenses-item'),
+	incomeItem = document.querySelector('.choose-income'),
+	checkSavings = document.querySelector('#savings'),
+	sumValue = document.querySelector('.choose-sum'),
+    percentValue = document.querySelector('.choose-percent'),
+    yearValue = document.querySelector('.year-value'),
+    monthValue = document.querySelector('.month-value'),
+    dayValue = document.querySelector('.day-value');
 let money, time;
 
 function start() {
@@ -67,22 +91,27 @@ let appData = {
         }
     },
     chooseIncome: function () {
+
         let items = prompt("Что принесет дополнительный доход? (Перечислите через запятую)", "");
-        appData.income = items.split(", ");
-        appData.income.push(prompt("Может что-то еще?", ""));
-        appData.income.sort();
-        appData.income.forEach(function(i) {
-            let dob = prompt("Способы доп. заработка:");
-        });
-        if ((typeof (items)) === "string" && (typeof (items)) != null && items != "") {
-            console.log("done");
+
+        if (typeof (items) != "string" || items == "" || typeof (items) == null) {
+            console.log("Вы ввели некорректные данные или не ввели их вовсе");
         } else {
-            appData.chooseIncome();
+            appData.income = items.split(", ");
+            appData.income.push(prompt("Может что-то еще?"));
+            appData.income.sort();
         }
-            
+
+        appData.income.forEach(function (itemmassive, i) {
+            alert("Способы доп. заработка: " + (i + 1) + " - " + itemmassive);
+        });
+
+
     }
 };
 
-for (let obj in appData) {
-    console.log(obj);
+for (let key in appData) {
+    console.log("Наша компания включает в себя данные" + " - " + key + " - " + appData[key]);
 }
+
+console.log("Ёжик" > "яблоко");
